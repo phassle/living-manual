@@ -1,0 +1,16 @@
+{
+	"name": "living-manual-kit",
+	"private": true,
+	"type": "module",
+	"description": "The Living Manual kit's own Playwright TypeScript project: the action helper and step record (src/index.ts), one Playwright project per configured product (playwright.config.ts), the CLIs (bin/) and the kit's tests (test/, node --test; lm-record.test.mjs runs Playwright on a fixture page).",
+	"scripts": {
+		"test": "node --test test/",
+		"doc": "playwright test"
+	},
+	"devDependencies": {
+		"@playwright/test": "1.64.1"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "1.8.0"
+	}
+}

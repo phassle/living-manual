@@ -1,0 +1,70 @@
+<svg viewBox="0 0 1000 410" width="1000" height="410" class="flow" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Who does what in the Living Manual: eight steps across developer, kit, writer and readers">
+    <style>
+.flow{--paper:#f6f8f7;--sheet:#ffffff;--ink:#14211e;--muted:#56655f;--teal:#12665a;--teal-soft:#e0efeb;--amber:#9a5b00;--amber-soft:#fbefd9;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media (prefers-color-scheme: dark){.flow{--paper:#0f1614;--sheet:#16201d;--ink:#e6eeeb;--muted:#9db0a9;--teal:#5cc2ae;--teal-soft:#173430;--amber:#e7ac4f;--amber-soft:#3a2b12}}
+.bg{fill:var(--sheet)} .lane.a{fill:var(--sheet)} .lane.b{fill:var(--paper)}
+.ln{font-weight:700;font-size:15px;fill:var(--ink)} .ls,.bs{font-size:11px;fill:var(--muted)} .bt{font-weight:600;font-size:13px;fill:var(--ink)}
+.kit rect{fill:var(--teal-soft);stroke:var(--teal);stroke-width:1.5} .person rect{fill:var(--amber-soft);stroke:var(--amber);stroke-width:1.5}
+.opt rect{fill:none;stroke:var(--amber);stroke-width:1.2;stroke-dasharray:4 3}
+.ar{fill:none;stroke:var(--muted);stroke-width:1.5} .ar.dash{stroke-dasharray:4 3} .ar.warn{stroke:var(--amber);stroke-dasharray:5 3}
+.ah{fill:var(--muted)} .ahw{fill:var(--amber)} .al{font-size:11px;fill:var(--amber);font-weight:600}
+.gate{stroke:var(--teal);stroke-width:2;stroke-dasharray:6 4} .gl{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:var(--teal)}
+</style>
+<rect width="1000" height="410" class="bg"/>
+    <defs>
+      <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+      <marker id="ahw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahw"/></marker>
+    </defs>
+    <!-- lanes -->
+    <rect x="0" y="35" width="1000" height="90" class="lane a"/>
+    <rect x="0" y="125" width="1000" height="90" class="lane b"/>
+    <rect x="0" y="215" width="1000" height="90" class="lane a"/>
+    <rect x="0" y="305" width="1000" height="90" class="lane b"/>
+    <text x="12" y="76" class="ln">Developer</text><text x="12" y="93" class="ls">installer, release</text>
+    <text x="12" y="166" class="ln">The kit</text><text x="12" y="183" class="ls">Claude + Playwright</text>
+    <text x="12" y="256" class="ln">Writer</text><text x="12" y="273" class="ls">decides, confirms</text>
+    <text x="12" y="346" class="ln">Readers</text><text x="12" y="363" class="ls">customers, support</text>
+
+    <!-- gate -->
+    <line x1="675" y1="28" x2="675" y2="398" class="gate"/>
+    <text x="675" y="20" class="gl" text-anchor="middle">Only confirmed scenarios pass</text>
+
+    <!-- arrows -->
+    <path d="M193.5 109 V170 H252" class="ar" marker-end="url(#ah)"/>
+    <path d="M344.5 170 H359" class="ar" marker-end="url(#ah)"/>
+    <path d="M451.5 170 H466" class="ar" marker-end="url(#ah)"/>
+    <path d="M514.5 199 V260 H573" class="ar" marker-end="url(#ah)"/>
+    <path d="M665.5 260 H712 V203" class="ar" marker-end="url(#ah)"/>
+    <path d="M772.5 170 H787" class="ar" marker-end="url(#ah)"/>
+    <path d="M879.5 170 H894" class="ar" marker-end="url(#ah)"/>
+    <path d="M745 199 V317" class="ar" marker-end="url(#ah)"/>
+    <path d="M942.5 199 V317" class="ar" marker-end="url(#ah)"/>
+    <path d="M407.5 231 V203" class="ar dash" marker-end="url(#ah)"/>
+    <path d="M835.5 109 V137" class="ar" marker-end="url(#ah)"/>
+    <path d="M868 141 L920 113" class="ar" marker-end="url(#ah)"/>
+    <path d="M942.5 141 V113" class="ar" marker-end="url(#ah)"/>
+    <path d="M835.5 199 V298 H621.5 V292" class="ar warn" marker-end="url(#ahw)"/>
+    <text x="752" y="292" class="al">changed flow → writer</text>
+
+    <!-- step boxes: kit -->
+    <g class="kit">
+      <rect x="256.5" y="141" width="88" height="58" rx="6"/><text x="300.5" y="165" class="bt" text-anchor="middle">2 Collect</text><text x="300.5" y="183" class="bs" text-anchor="middle">list all tasks</text>
+      <rect x="363.5" y="141" width="88" height="58" rx="6"/><text x="407.5" y="165" class="bt" text-anchor="middle">3 Draft</text><text x="407.5" y="183" class="bs" text-anchor="middle">plain scenarios</text>
+      <rect x="470.5" y="141" width="88" height="58" rx="6"/><text x="514.5" y="165" class="bt" text-anchor="middle">4 Run</text><text x="514.5" y="183" class="bs" text-anchor="middle">test + record</text>
+      <rect x="684.5" y="141" width="88" height="58" rx="6"/><text x="728.5" y="165" class="bt" text-anchor="middle">6 Generate</text><text x="728.5" y="183" class="bs" text-anchor="middle">manual + video</text>
+      <rect x="791.5" y="141" width="88" height="58" rx="6"/><text x="835.5" y="165" class="bt" text-anchor="middle">7 Watch</text><text x="835.5" y="183" class="bs" text-anchor="middle">re-run, heal</text>
+      <rect x="898.5" y="141" width="88" height="58" rx="6"/><text x="942.5" y="165" class="bt" text-anchor="middle">8 Guide</text><text x="942.5" y="183" class="bs" text-anchor="middle">build helper</text>
+    </g>
+    <!-- step boxes: people -->
+    <g class="person">
+      <rect x="149.5" y="51" width="88" height="58" rx="6"/><text x="193.5" y="75" class="bt" text-anchor="middle">1 Setup</text><text x="193.5" y="93" class="bs" text-anchor="middle">8 questions</text>
+      <rect x="791.5" y="51" width="88" height="58" rx="6"/><text x="835.5" y="75" class="bt" text-anchor="middle">Release</text><text x="835.5" y="93" class="bs" text-anchor="middle">starts watch</text>
+      <rect x="898.5" y="51" width="88" height="58" rx="6"/><text x="942.5" y="75" class="bt" text-anchor="middle">Issues</text><text x="942.5" y="93" class="bs" text-anchor="middle">fix bugs, test IDs</text>
+      <rect x="577.5" y="231" width="88" height="58" rx="6"/><text x="621.5" y="255" class="bt" text-anchor="middle">5 Writer</text><text x="621.5" y="273" class="bs" text-anchor="middle">session: decide</text>
+      <rect x="684.5" y="321" width="122" height="58" rx="6"/><text x="745.5" y="345" class="bt" text-anchor="middle">Read, watch</text><text x="745.5" y="363" class="bs" text-anchor="middle">manual and videos</text>
+      <rect x="881.5" y="321" width="110" height="58" rx="6"/><text x="936.5" y="345" class="bt" text-anchor="middle">Ask the guide</text><text x="936.5" y="363" class="bs" text-anchor="middle">click as it points</text>
+    </g>
+    <g class="opt">
+      <rect x="350.5" y="231" width="114" height="52" rx="6"/><text x="407.5" y="253" class="bs" text-anchor="middle">optional: old manual,</text><text x="407.5" y="269" class="bs" text-anchor="middle">notes or a recording</text>
+    </g>
+  </svg>

@@ -1,0 +1,9 @@
+{
+	"name": "living-manual-kit-pack",
+	"private": true,
+	"type": "module",
+	"description": "The Living Manual skill pack: the kit (kit/), one skill per stage (skills/), the installer (install.mjs) and the genericity check (bin/check-generic.mjs).",
+	"scripts": {
+		"test": "node --test test/ && npm --prefix kit test"
+	}
+}

@@ -57,11 +57,13 @@ export function narrate(record) {
 	if (role) add({ id: 'intro-2', kind: 'intro', text: `Here's how, as a ${clean(role)}.` });
 	const last = record.steps.length - 1;
 	let first = true;
+	// The result's sentence is said once, before the last step's first check; its other checks are plain.
+	let resultSaid = false;
 	record.steps.forEach((step, s) => {
 		step.actions.forEach((a, i) => {
 			let text;
 			const what = instruction(a);
-			if (a.kind === 'verify' && s === last) text = `And there it is: ${lowerFirst(unquote(step.text))}`;
+			if (a.kind === 'verify' && s === last && !resultSaid) { text = `And there it is: ${lowerFirst(unquote(step.text))}`; resultSaid = true; }
 			else if (first) text = `First, ${a.screen ? `in the ${a.screen.toLowerCase()}, ` : ''}${what}`;
 			else if (i === 0 && purpose(step.text) && !saysIt(step.text, a)) text = `To ${purpose(step.text)}, ${what}`;
 			else if (i === 0 && s === last) text = `Then ${what}`;

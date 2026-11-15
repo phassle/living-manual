@@ -270,3 +270,16 @@ test('--draft-preview: the title card and caption band say the film is a draft n
 	assert.match(bandHtml('Click New widget.', 'Step 1 of 6', true), /Draft/);
 	assert.doesNotMatch(cardHtml({ product: 'Fixture', title: 'T', role: null, steps: 1, id: 'X-01', version: '1' }), /Draft/);
 });
+
+test('a last step with two checks says its result once', async () => {
+	const { narrate } = await import(join(KIT, 'bin/lib/narration.mjs'));
+	const verify = (label) => ({ kind: 'verify', screen: 'Widget list', label, locator: { strategy: 'text' } });
+	const units = narrate({ scenario: { title: 'Ship a widget', role: null }, steps: [
+		{ text: 'I ship the widget', actions: [{ kind: 'click', screen: 'Widget list', label: 'Ship', locator: { strategy: 'role' } }] },
+		{ text: 'the widget is listed as "Shipped"', actions: [verify('Blue'), verify('Shipped')] },
+	] });
+	const texts = units.map((u) => u.text);
+	assert.equal(texts.filter((x) => x.startsWith('And there it is')).length, 1, texts.join('\n'));
+	assert.equal(texts[2], 'And there it is: the widget is listed as Shipped.');
+	assert.equal(texts[3], 'Check that Shipped is shown.');
+});

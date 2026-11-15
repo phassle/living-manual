@@ -9,6 +9,8 @@
 //     words the config cannot name (its company, its other modules, its demo data's names).
 // A word matches at a word start, case-insensitively (a plural is still a hit); a number, or a word
 // of four letters or fewer, matches only whole and as written.
+// generic-allow.txt in the pack lists the deliberate exceptions, one `<file>: <word>` per line
+// (# comments), e.g. the author's name in the README. Only that word, only in that file.
 //
 // usage: node bin/check-generic.mjs [<pack dir>] --workspace <workspace dir>
 // Exit 0 clean, 1 product words found (one line each: <file>:<line>: <word>), 2 refused.
@@ -17,7 +19,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const SKIP = new Set(['node_modules', '.git', 'test-results', '.playwright-mcp']);
+const SKIP = new Set(['node_modules', '.git', 'test-results', '.playwright-mcp', 'generic-allow.txt']);
 
 /** The product words of one workspace: [{ term, product }]. */
 export function productWords(workspace) {
@@ -117,7 +119,12 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
 	}
 	const words = productWords(workspace);
 	const products = new Set(words.map((x) => x.product)).size;
-	const { hits, count } = findLeaks(pack, words);
+	const allowFile = join(pack, 'generic-allow.txt');
+	const allowed = new Set(existsSync(allowFile) ? readFileSync(allowFile, 'utf8').split('\n')
+		.map((l) => l.replace(/#.*/, '').trim()).filter(Boolean).map((l) => l.toLowerCase()) : []);
+	const found = findLeaks(pack, words);
+	const hits = found.hits.filter((h) => !allowed.has(`${h.file}: ${h.word}`.toLowerCase()));
+	const { count } = found;
 	for (const h of hits) console.log(`${h.file}:${h.line}: ${h.word}`);
 	if (hits.length) {
 		console.log(`generic FAIL: ${hits.length} product words in ${new Set(hits.map((h) => h.file)).size} files`);

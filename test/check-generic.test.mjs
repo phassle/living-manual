@@ -72,3 +72,14 @@ test('without a workspace configuration the check refuses (exit 2)', () => {
 	assert.equal(r.status, 2);
 	assert.match(r.stdout + r.stderr, /generic refused: no living-manual\/living-manual\.config\.json/);
 });
+
+test('generic-allow.txt exempts exactly the listed word in exactly the listed file', () => {
+	const r = check(fixture({
+		'generic-allow.txt': '# the author signs the README\nREADME.md: Wilhelmina\n',
+		'README.md': 'Made by Wilhelmina.\n',
+		'kit/a.mjs': '// Wilhelmina wrote this\n',
+	}));
+	assert.equal(r.status, 1, r.stdout + r.stderr);
+	assert.match(r.stdout, /kit\/a\.mjs:1: Wilhelmina/);
+	assert.doesNotMatch(r.stdout, /README\.md/);
+});

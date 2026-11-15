@@ -2,7 +2,7 @@
 
 > **Proof of concept.** A personal experiment, not a product: no company supports or maintains it. Use it as a template, make your own copy, and adapt it.
 >
-> Questions or ideas: reach the author on [LinkedIn](https://www.linkedin.com/in/per-hassle-603ab9/).
+> Made by Per Hassle as a personal proof of concept. Questions or ideas: [LinkedIn](https://www.linkedin.com/in/per-hassle-603ab9/).
 
 A skill pack that writes and keeps a product's user manual, a narrated video per task and an in-product guide, from doc scenarios that run against the product. The pack is the **single source of truth** for the kit: a workspace holds an installed copy, and every change to the kit is made here and installed again.
 
@@ -160,5 +160,5 @@ Each skill says what it needs, what it runs and when it is done. Every command-l
 
 1. Edit here, in the pack.
 2. `npm test`: the pack's tests, then the kit's. Done when both report `fail 0`.
-3. `node bin/check-generic.mjs --workspace <workspace>` against every workspace the kit is installed in. It hunts the product words that workspace's configuration and product folders name (ids, names, repos, areas, people, databases, ports, cookies, scenario ID prefixes, and each product folder's `private-terms.txt`). Done on `generic OK`. A hit means a product fact sits in the pack: move it to the config or the product folder.
+3. `node bin/check-generic.mjs --workspace <workspace>` against every workspace the kit is installed in. It hunts the product words that workspace's configuration and product folders name (ids, names, repos, areas, people, databases, ports, cookies, scenario ID prefixes, and each product folder's `private-terms.txt`). Done on `generic OK`. A hit means a product fact sits in the pack: move it to the config or the product folder. A deliberate exception (the author's name in this README) goes in `generic-allow.txt`, one `<file>: <word>` per line.
 4. `node install.mjs <workspace>` for each workspace, then `--check`.

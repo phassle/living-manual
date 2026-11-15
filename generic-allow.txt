@@ -1,0 +1,3 @@
+# Deliberate exceptions to the genericity check: one `<file>: <word>` per line.
+# The author signs the README's proof-of-concept note.
+README.md: Per Hassle

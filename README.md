@@ -1,6 +1,8 @@
 # Living Manual kit
 
 > **Proof of concept.** A personal experiment, not a product: no company supports or maintains it. Use it as a template, make your own copy, and adapt it.
+>
+> Questions or ideas: reach the author on [LinkedIn](https://www.linkedin.com/in/per-hassle-603ab9/).
 
 A skill pack that writes and keeps a product's user manual, a narrated video per task and an in-product guide, from doc scenarios that run against the product. The pack is the **single source of truth** for the kit: a workspace holds an installed copy, and every change to the kit is made here and installed again.
 

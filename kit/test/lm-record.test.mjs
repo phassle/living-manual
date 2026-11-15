@@ -211,3 +211,27 @@ test('WIDGET-04 Press two buttons', { tag: '@doc' }, async ({ page, lm }) => {
 	assert.deepEqual(png.pixel(120, 120), [200, 200, 200], 'the button clicked before (First) is not drawn hovered');
 	rmSync(root, { recursive: true });
 });
+
+// A field wrapped in its label (no for=, no id) is named by the label's words.
+test('a field inside its <label> is recorded with the label\'s words', { timeout: 120_000 }, () => {
+	const page = '<label>Colour <input></label><label><input type="checkbox"> Express</label>';
+	const spec = `import { test } from ${JSON.stringify(join(KIT, 'src/index.ts'))};
+
+test('WIDGET-03 Colour a widget', { tag: '@doc' }, async ({ page, lm }) => {
+	await test.step('I colour the widget "Blue" and send it express', async () => {
+		await page.setContent(${JSON.stringify(page)});
+		lm.screen('Widget form');
+		await lm.fill({ role: 'textbox', name: 'Colour' }, 'Blue');
+		await lm.click({ role: 'checkbox', name: 'Express' });
+	});
+});
+`;
+	const root = workspace(spec);
+	const run = spawnSync(join(KIT, 'node_modules/.bin/playwright'), ['test', '--project=fixture'], {
+		cwd: KIT, encoding: 'utf8', env: { ...process.env, LM_WORKSPACE: root },
+	});
+	assert.equal(run.status, 0, run.stdout + run.stderr);
+	const rec = JSON.parse(readFileSync(join(root, 'living-manual/products/fixture/build/runs/WIDGET-03/step-record.json'), 'utf8'));
+	assert.deepEqual(rec.steps[0].actions.map((a) => a.label), ['Colour', 'Express']);
+	rmSync(root, { recursive: true, force: true });
+});

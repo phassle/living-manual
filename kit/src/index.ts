@@ -197,6 +197,9 @@ async function labelOf(loc: Locator): Promise<string> {
 		const id = (el as HTMLElement).id;
 		const forLabel = id ? document.querySelector(`label[for="${CSS.escape(id)}"]`) : null;
 		if (forLabel && clean(forLabel.textContent)) return clean(forLabel.textContent);
+		// A field inside its <label> (<label>Title <input></label>): the label's own words.
+		const wrapping = ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName) ? el.closest('label') : null;
+		if (wrapping && clean(wrapping.textContent)) return clean(wrapping.textContent);
 		const own = clean((el as HTMLElement).innerText);
 		const isField = ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName) || !!el.querySelector('input, textarea, select');
 		const prev = el.previousElementSibling;
